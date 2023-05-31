@@ -7,9 +7,9 @@ class ApiData{
     return BaseNetwork.getList("matches");
   }
 
-  Future<List<dynamic>> loadmatchesdetail( int idd){
-    String id = idd.toString();
-    return BaseNetwork.getList("matches/$id");
+  Future<Map<String, dynamic>> loadmatchesdetail(String rid){
+    String id = rid;
+    return BaseNetwork.get("matches/$id");
   }
 
 }
