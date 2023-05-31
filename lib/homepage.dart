@@ -1,13 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:responsi_wawan/api_data.dart';
-import 'package:responsi_wawan/base_network.dart';
+import 'package:bismillah_bisa/api_data.dart';
+import 'package:bismillah_bisa/base_network.dart';
 import 'package:http/http.dart' as http;
-import 'package:responsi_wawan/detail_matches.dart';
+import 'package:bismillah_bisa/detail_matches.dart';
 import 'dart:convert';
-
-import 'package:responsi_wawan/detail_matches_model.dart';
+import 'package:bismillah_bisa/detail_matches_model.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -68,14 +67,21 @@ class _MainPageState extends State<MainPage> {
                           onTap: (){
                             Navigator.push(context, MaterialPageRoute(
                                 builder: (context)=>
-                                    DetailPage(id : listModel!.id.toString(),)
+                                    DetailPage(id : listModel.id!,)
                             ));
                           },
                           child: Center(
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
-                                  child: Text(listModel.homeTeam!.name!),
+                                  child: Column(
+                                    children: [
+                                      Image.network("https://flagcdn.com/256x192/" + listModel.homeTeam!.country!.substring(0, 2).toLowerCase() + ".png",
+                                      height: 100, width: 150,fit: BoxFit.fill,),
+                                      Text(listModel.homeTeam!.name!),
+                                    ],
+                                  )
                                 ),
                                 SizedBox(width: 50,),
                                 Container(
@@ -91,7 +97,13 @@ class _MainPageState extends State<MainPage> {
                                 ),
                                 SizedBox(width: 50,),
                                 Container(
-                                  child: Text(listModel.awayTeam!.name!),
+                                  child: Column(
+                                    children: [
+                                      Image.network("https://flagcdn.com/256x192/" + listModel.awayTeam!.country!.substring(0, 2).toLowerCase() + ".png",
+                                        height: 100, width: 150,fit: BoxFit.fill,),
+                                      Text(listModel.awayTeam!.name!)
+                                    ],
+                                  ),
                                 )
                               ],
                             ),
